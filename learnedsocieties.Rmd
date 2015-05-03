@@ -1,0 +1,39 @@
+---
+title: "chp5"
+author: "George Oberle"
+date: "May 2, 2015"
+output: html_document
+---
+
+```{r}
+library (sp)
+library (rgdal)
+library (rgeos)
+library (maptools)
+library (ggmap)
+library (ggplot2)
+library (mullenMisc)
+library (magrittr)
+library (stringr)
+library (dplyr)
+library (RColorBrewer)
+library (igraph)
+
+```
+
+
+```{r}
+early_learned <- read.csv("~/chp5/data/schol-soc-geocoded.csv")
+```
+
+```{r}
+typedate <- ggplot(early_learned, aes (x=Date.Established, fill=Society))
+typedate+ geom_histogram(position= "stack", binwidth= 10) + theme(axis.text.x = element_text(face = "bold", angle = 60, hjust = 1, size = 8)) +ggtitle("Learned Societies by Date Established") + ylab("Total Established") + xlab ("Year Established")
+```
+
+```{r}
+#Histogram of Total Learned Societies Established 1768-1848 by state.
+n <- ggplot(early_learned, aes(x=State))
+n + geom_histogram() + ggtitle("Learned Societies Established 1768-1848") + ylab("Total Established")
+```
+
