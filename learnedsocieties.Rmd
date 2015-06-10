@@ -24,7 +24,20 @@ library (igraph)
 
 ```{r}
 early_learned <- read.csv("~/chp5/data/schol-soc-geocoded.csv")
+silliman_societies <- read.csv("~/chp5/data/Scientific_Societies_1825_American_Journal_of_Science_and_Arts.csv")
 ```
+
+```{r}
+t <- ggplot(silliman_societies, aes(x=Year.Established))
+t + geom_histogram()
+t + geom_histogram(binwidth = 3)
+
+u <- ggplot (silliman_societies, aes(x=State))
+u + geom_histogram()
+u + geom_histogram() + ggtitle ("Learned Socities Established by State 1768-1848")+ ylab ("Total Established")
+```
+
+
 
 ```{r}
 typedate <- ggplot(early_learned, aes (x=Date.Established, fill=Society))
@@ -37,3 +50,4 @@ n <- ggplot(early_learned, aes(x=State))
 n + geom_histogram() + ggtitle("Learned Societies Established 1768-1848") + ylab("Total Established")
 ```
 
+silliman_societies 
