@@ -28,9 +28,6 @@ silliman_societies <- read.csv("~/chp5/data/Scientific_Societies_1825_American_J
 ```
 
 ```{r}
-
-
-
 t <- ggplot(silliman_societies, aes(x=Year.Established))
 t + geom_histogram()
 t + geom_histogram(binwidth = 3)
@@ -52,5 +49,23 @@ typedate+ geom_histogram(position= "stack", binwidth= 10) + theme(axis.text.x = 
 n <- ggplot(early_learned, aes(x=State))
 n + geom_histogram() + ggtitle("Learned Societies Established 1768-1848") + ylab("Total Established")
 ```
+
+```{r}
+tt <- ggplot(early_learned, aes(x=Date.Established))
+tt + geom_histogram()
+tt + geom_histogram(binwidth = 3)
+
+date <- early_learned[ which(early_learned$Date.Established <1827), ]
+
+uu <- ggplot (early_learned, aes(x=State))
+uu + geom_histogram()
+u + geom_histogram() + ggtitle ("Learned Societies")+ ylab ("Total Established")
+
+udate <- ggplot (date, aes(x=State))
+udate + geom_histogram()
+udate + geom_histogram() + ggtitle ("Learned Societies Before 1826")+ ylab ("Total Established")
+
+```
+
 
 silliman_societies 
