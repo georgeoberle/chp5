@@ -28,13 +28,16 @@ silliman_societies <- read.csv("~/chp5/data/Scientific_Societies_1825_American_J
 ```
 
 ```{r}
+
+
+
 t <- ggplot(silliman_societies, aes(x=Year.Established))
 t + geom_histogram()
 t + geom_histogram(binwidth = 3)
 
 u <- ggplot (silliman_societies, aes(x=State))
 u + geom_histogram()
-u + geom_histogram() + ggtitle ("Learned Socities Established by State 1768-1848")+ ylab ("Total Established")
+u + geom_histogram() + ggtitle ("Scientific Societies 1826")+ ylab ("Total Established")
 ```
 
 
