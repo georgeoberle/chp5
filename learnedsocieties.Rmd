@@ -25,6 +25,8 @@ library (igraph)
 ```{r}
 early_learned <- read.csv("~/chp5/data/schol-soc-geocoded.csv")
 silliman_societies <- read.csv("~/chp5/data/Scientific_Societies_1825_American_Journal_of_Science_and_Arts.csv")
+bates_early_learned <-read.csv("~/chp5/data/Early Learned Societies Bates 2.csv")
+scilearn <- read.csv ("~/chp5/data/scilearned.csv")
 ```
 
 ```{r}
@@ -56,6 +58,7 @@ tt + geom_histogram()
 tt + geom_histogram(binwidth = 3)
 
 date <- early_learned[ which(early_learned$Date.Established <1827), ]
+datebates <- early_learned[ which(bates_early_learned$Date.Established <1827), ]
 
 uu <- ggplot (early_learned, aes(x=State))
 uu + geom_histogram()
@@ -65,6 +68,23 @@ udate <- ggplot (date, aes(x=State))
 udate + geom_histogram()
 udate + geom_histogram() + ggtitle ("Learned Societies Before 1826")+ ylab ("Total Established")
 
+```
+
+```{r}
+batesdate <- ggplot (bates_early_learned, aes(x=State))
+batesdate + geom_histogram()
+batesdate + geom_histogram() + ggtitle ("Scientific Societies Ralph Bates")+ ylab ("Total Established")
+
+newdate <- ggplot (datebates, aes(x=State))
+newdate + geom_histogram()
+newdate + geom_histogram() + ggtitle ("Scientific Societies Before 1826 Ralph Bates")+ ylab ("Total Established")
+```
+
+
+```{r}
+year <- ggplot(scilearn, aes(x=State, fill= Type ))
+year + geom_histogram(position = "dodge", binwidth = 1) +
+ggtitle("Comparison of Sillian's Scientific Survey with Scholarly Societies") + ylab("Total Institutions")
 ```
 
 
