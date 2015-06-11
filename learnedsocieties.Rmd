@@ -82,9 +82,12 @@ newdate + geom_histogram() + ggtitle ("Scientific Societies Before 1826 Ralph Ba
 
 
 ```{r}
-year <- ggplot(scilearn, aes(x=State, fill= Type ))
-year + geom_histogram(position = "dodge", binwidth = 1) +
-ggtitle("Comparison of Sillian's Scientific Survey with Scholarly Societies") + ylab("Total Institutions")
+scilearn %>%
+  group_by(Date.Established, Type) %>%
+  summarize(n = n())  %>% 
+  ggplot(aes(x=Date.Established, y= n, color = Type )) +
+  geom_line() +
+ggtitle("Comparison of Silliman's Scientific Societies with Scholarly Societies") + ylab("Total Societies") + xlab("Year Established")
 ```
 
 
