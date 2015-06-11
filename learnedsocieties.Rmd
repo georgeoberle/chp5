@@ -29,17 +29,6 @@ bates_early_learned <-read.csv("~/chp5/data/Early Learned Societies Bates 2.csv"
 scilearn <- read.csv ("~/chp5/data/scilearned.csv")
 ```
 
-```{r}
-t <- ggplot(silliman_societies, aes(x=Year.Established))
-t + geom_histogram()
-t + geom_histogram(binwidth = 3)
-
-u <- ggplot (silliman_societies, aes(x=State))
-u + geom_histogram()
-u + geom_histogram() + ggtitle ("Scientific Societies 1826")+ ylab ("Total Established")
-```
-
-
 
 ```{r}
 typedate <- ggplot(early_learned, aes (x=Date.Established, fill=Society))
@@ -53,10 +42,6 @@ n + geom_histogram() + ggtitle("Learned Societies Established 1768-1848") + ylab
 ```
 
 ```{r}
-tt <- ggplot(early_learned, aes(x=Date.Established))
-tt + geom_histogram()
-tt + geom_histogram(binwidth = 3)
-
 date <- early_learned[ which(early_learned$Date.Established <1827), ]
 datebates <- early_learned[ which(bates_early_learned$Date.Established <1827), ]
 
