@@ -27,53 +27,38 @@ early_learned <- read.csv("~/chp5/data/schol-soc-geocoded.csv")
 silliman_societies <- read.csv("~/chp5/data/Scientific_Societies_1825_American_Journal_of_Science_and_Arts.csv")
 bates_early_learned <-read.csv("~/chp5/data/Early Learned Societies Bates 2.csv")
 scilearn <- read.csv ("~/chp5/data/scilearned.csv")
+libraries <- read.csv("~/chp5/data/libraries.csv")
+dclibraries<- read.csv ("~/chp5/data/dclibrariesmod.csv")
 ```
 
 
 ```{r}
-typedate <- ggplot(early_learned, aes (x=Date.Established, fill=Society))
-typedate+ geom_histogram(position= "stack", binwidth= 10) + theme(axis.text.x = element_text(face = "bold", angle = 60, hjust = 1, size = 8)) +ggtitle("Learned Societies by Date Established") + ylab("Total Established") + xlab ("Year Established")
-```
+dclibraries %>%
 
-```{r}
-#Histogram of Total Learned Societies Established 1768-1848 by state.
-n <- ggplot(early_learned, aes(x=State))
-n + geom_histogram() + ggtitle("Learned Societies Established 1768-1848") + ylab("Total Established")
-```
+  round_year(set_of_years) # round to decade by default
+  
+  
+  mutate(location=paste (City, State))
+location_geocoded <- geocode(schol_soc$location)
+schol_soc_geocoded <- cbind(schol_soc, location_geocoded)
+schol_soc_geocoded
 
-```{r}
-date <- early_learned[ which(early_learned$Date.Established <1827), ]
-datebates <- early_learned[ which(bates_early_learned$Date.Established <1827), ]
 
-uu <- ggplot (early_learned, aes(x=State))
-uu + geom_histogram()
-u + geom_histogram() + ggtitle ("Learned Societies")+ ylab ("Total Established")
 
-udate <- ggplot (date, aes(x=State))
-udate + geom_histogram()
-udate + geom_histogram() + ggtitle ("Learned Societies Before 1826")+ ylab ("Total Established")
+dclib <- ggplot(dclibraries, aes (x=Founding.Date, fill=Type))
+dclib+ geom_histogram(position= "stack", binwidth= 10) + theme(axis.text.x = element_text(face = "bold", angle = 60, hjust = 1, size = 8)) +ggtitle("Learned Societies by Date Established") + ylab("Total Established") + xlab ("Year Established")
 
 ```
 
 ```{r}
-batesdate <- ggplot (bates_early_learned, aes(x=State))
-batesdate + geom_histogram()
-batesdate + geom_histogram() + ggtitle ("Scientific Societies Ralph Bates")+ ylab ("Total Established")
 
-newdate <- ggplot (datebates, aes(x=State))
-newdate + geom_histogram()
-newdate + geom_histogram() + ggtitle ("Scientific Societies Before 1826 Ralph Bates")+ ylab ("Total Established")
+dclib <-ggplot(dclibraries, aes (x=Founding.Date, Fill=Types))
+geom_histogram(dclib, + ggtitle("Learned Societies Established 1768-1848") + ylab("Total Established")
+
+
+
+
 ```
 
 
-```{r}
-scilearn %>%
-  group_by(Date.Established, Type) %>%
-  summarize(n = n())  %>% 
-  ggplot(aes(x=Date.Established, y= n, color = Type )) +
-  geom_line() +
-ggtitle("Comparison of Silliman's Scientific Societies with Scholarly Societies") + ylab("Total Societies") + xlab("Year Established")
-```
 
-
-silliman_societies 
