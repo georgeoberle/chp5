@@ -29,8 +29,38 @@ bates_early_learned <-read.csv("~/chp5/data/Early Learned Societies Bates 2.csv"
 scilearn <- read.csv ("~/chp5/data/scilearned.csv")
 libraries <- read.csv("~/chp5/data/libraries.csv")
 dclibraries<- read.csv ("~/chp5/data/dclibrariesmod.csv")
+militacad<- read.csv ("~/chp5/data/Military_Education_Military_Academy_List.csv")
 ```
 
+
+```{r}
+#Maps Begin
+militacad %>%
+   mutate (location=paste (City,State))
+militacad
+```
+#This is not working
+location_geocoded <- geocode(militacad$location)
+militacad_geocoded <- cbind(militacad, location_geocoded)
+
+militacad_geocoded
+write.csv(schol_soc_geocoded, file = "schol-soc-geocoded.csv")
+
+
+location_geocoded <- geocode(militacad$location)
+militacad_geocoded <- cbind(militacad, location_geocoded)
+militacad_geocoded
+
+
+
+#Maps-Scholarly Societies Begin
+schol_soc <- read.csv("~/societiesnetwork/data/scholarlysocieties.csv")     
+schol_soc<- schol_soc%>%
+mutate(location=paste (City, State))
+location_geocoded <- geocode(schol_soc$location)
+schol_soc_geocoded <- cbind(schol_soc, location_geocoded)
+schol_soc_geocoded
+write.csv(schol_soc_geocoded, file = "schol-soc-geocoded.csv")
 
 ```{r}
 dclibraries %>%
